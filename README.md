@@ -6,7 +6,7 @@ A concurrent in memory Go cache the uses one method for adding and reading cache
     package main
 
     import (
-		"fmt"
+	"fmt"
         "time"
 
         "github.com/peterlabuschagne/cache"
@@ -16,16 +16,16 @@ A concurrent in memory Go cache the uses one method for adding and reading cache
         val int
     }
 	
-	func main() {
-		c := cache.New[mock](time.Second * 1)
+    func main() {
+	c := cache.New[mock](time.Second * 1)
 
-		m, err := c.Get(func() (mock, error) {
-			return mock{val: 123}, nil
-		})
-		if err != nil {
-            fmt.Println(err)
-        }
+	m, err := c.Get(func() (mock, error) {
+		return mock{val: 123}, nil
+	})
+	if err != nil {
+		fmt.Println(err)
+	}
 		
-		fmt.Printf("%+v\n", m)
+	fmt.Printf("%+v\n", m)
     }
 ```
