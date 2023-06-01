@@ -87,3 +87,12 @@ func New[T any](cacheFor time.Duration) *Cache[T] {
 		},
 	}
 }
+
+// NewForTesting offers a test-specific cache stub that can be used when the cache is not relevant to the testing scenario
+func NewForTesting[T any]() *Cache[T] {
+	return &Cache[T]{
+		cache: &record[T]{
+			cacheFor: 0,
+		},
+	}
+}
