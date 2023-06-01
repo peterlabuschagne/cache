@@ -65,3 +65,25 @@ func TestCache_Clear(t *testing.T) {
 		require.Equal(t, 0, m.val)
 	})
 }
+
+func TestCache_NewForTesting(t *testing.T) {
+	c := cache.NewForTesting[mock]()
+
+	val1 := 123
+	t.Run("empty cache - insert new record and lookup", func(t *testing.T) {
+		m, err := c.Get(func() (mock, error) {
+			return mock{val: val1}, nil
+		})
+		require.Nil(t, err)
+		require.Equal(t, val1, m.val)
+	})
+
+	val2 := 456
+	t.Run("rewrite record", func(t *testing.T) {
+		m, err := c.Get(func() (mock, error) {
+			return mock{val: val2}, nil
+		})
+		require.Nil(t, err)
+		require.Equal(t, val2, m.val)
+	})
+}

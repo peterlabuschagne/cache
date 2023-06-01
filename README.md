@@ -2,6 +2,9 @@
 A concurrent in memory Go cache that uses one method for adding and reading cache entries and another method for clearing entries with support for Go Generics.
 
 ## Usage
+```
+    go get github.com/peterlabuschagne/cache
+```
 ```Go
     package main
 
@@ -24,6 +27,7 @@ A concurrent in memory Go cache that uses one method for adding and reading cach
 	})
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 		
 	fmt.Printf("%+v\n", m)
